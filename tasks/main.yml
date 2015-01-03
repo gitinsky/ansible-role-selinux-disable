@@ -1,5 +1,6 @@
 - name: disable SELinux
   command: setenforce 0
+  ignore_errors: True
 
 - name: install Python bindings
   yum: name=libselinux-python state=present
