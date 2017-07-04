@@ -1,12 +1,7 @@
-- name: disable SELinux
-  command: setenforce 0
-  ignore_errors: True
-  when: ansible_os_family  == "RedHat"
-
 - name: install Python bindings
   yum: name=libselinux-python state=present
   when: ansible_os_family  == "RedHat"
 
-- name: put SELinux config
-  template: src=selinux/config dest=/etc/selinux/config owner=root group=root mode=0644 backup=yes
+- name: disable SELinux
+  selinux: state=disabled
   when: ansible_os_family  == "RedHat"
